@@ -1,0 +1,79 @@
+﻿using System;
+
+namespace LWork_6
+{
+    class MyClass
+    {
+        private int number;
+        private int[] Date = new int[3];
+        private int money;
+        public MyClass(int num,int d,int m, int y, int cash)
+        {
+            number = num;
+            Date[0] = d;
+            Date[1] = m;
+            Date[2] = y;
+            money = cash;
+        }
+        public void set(int num, int d, int m, int y, int cash)
+        {
+            number = num;
+            Date[0] = d;
+            Date[1] = m;
+            Date[2] = y;
+            money = cash;
+            Console.WriteLine("Данные успешно редактированы.\n");
+        }
+        public void show()
+        {
+            Console.WriteLine("Номер: {0} \nДата: {1}.{2}.{3} \nСумма: {4} \n", number,
+            Date[0], Date[1], Date[2], money);
+        }
+        ~MyClass()
+        {
+            Console.WriteLine("Класс прекратил свою роботу.");
+        }
+    }
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            int number, d, m, y, cash, action=1;
+            int[] Date = new int[3];
+            MyClass MyElement = new MyClass(12, 12, 09, 2000, 9999);
+            do
+            {
+                Console.Write("Выберите действие: 1- редактировать, 2- показать, ...- выход: ");
+                action = Convert.ToInt32(Console.ReadLine());
+                switch (action)
+                {
+                    case 1:
+                        {
+                            Console.Write("Введите номер: ");
+                            number = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите день: ");
+                            d = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите месяц: ");
+                            m = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите год: ");
+                            y = Convert.ToInt32(Console.ReadLine());
+                            Console.Write("Введите сумму: ");
+                            cash = Convert.ToInt32(Console.ReadLine());
+                            MyElement.set(number, d, m, y, cash);
+                            break;
+                        }
+                    case 2:
+                        {
+                            MyElement.show();
+                            break;
+                        }
+                    default:
+                        {
+                            action = 0;
+                            break;
+                        }
+                }
+            } while(action!=0);
+        }
+    }
+}

@@ -1,0 +1,47 @@
+﻿using System;
+
+namespace Lab_3
+{
+    class Device
+    {
+        protected string title;
+        protected double weight;
+        public Device(string title, double weight)
+        {
+            this.title = title;
+            this.weight = weight;
+        }
+        public void Show()
+        {
+            Console.WriteLine("Название: " + title + " Вес:" + weight);
+        }
+    }
+class MobileTelephone : Device
+    {
+        private string brand;
+        private bool antenna;
+        // Передача параметров в базовый конструктор
+        public MobileTelephone(string title, double weight, string brand, bool antenna)
+        : base(title, weight)
+        {
+            this.brand = brand;
+            this.antenna = antenna;
+        }
+        public void Show()
+        {
+            // Обращение к методу базового класса, используя ключевое слово base
+            base.Show();
+            string temp;
+            Console.WriteLine("Производитель: " + brand + " Антенна:" + (temp = antenna == true ?
+            "есть" : "нет"));
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MobileTelephone myFon = new MobileTelephone("DS12", 0.3, "Fly", true); myFon.Show();
+            Console.ReadKey();
+        }
+    }
+}

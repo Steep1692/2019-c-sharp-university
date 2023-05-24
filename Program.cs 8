@@ -1,0 +1,30 @@
+﻿using System;
+
+namespace LWork_4
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            //for
+            double y = 0;
+            for (int x = 20; x >= 3; x--)
+            {
+                y += Math.Cos(3*x)+Math.Exp(-2*x);
+            }
+            Console.WriteLine("Сумма ряда равна : {0:0.00}", y);
+            //while
+            int num, count = 1, fact=1;
+            Console.Write("Введите а : ");
+            num = Convert.ToInt32(Console.ReadLine());
+            while (count < num+1)
+            {
+                fact *= count;
+                count++;
+            }
+            double res;
+            res = fact / Math.Pow(num, num);
+            Console.WriteLine("Результат {0}", y);
+        }
+    }
+}

@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Collections;
+namespace ConsoleApp4
+{
+    class Student
+    {
+        //Поля
+        private double Grade;
+        private string Surname;
+        //Метод чтения курса
+        public double GetGrade() { return Grade; }
+        //Метод чтения фамилии
+        public string GetSurname() { return Surname; }
+        //Метод записи курса
+        public void SetGrade(double pGrade) { Grade = pGrade; }
+        //Метод записи фамилии
+        public void SetSurname(string pSurname) { Surname = pSurname; }
+        //Метод - цикл пробегается по массиву классов и выводит их поля, обращаясь к методам чтения
+        public void PrintStudents(int SizePrint, ref ArrayList pSortArr)
+        {
+            for (int i = 0; i < SizePrint; i++)
+            {
+                Student StPrint = (Student)pSortArr[i];
+                Console.WriteLine("Grade student No {0} is {1} ;", i + 1, StPrint.GetGrade());
+                Console.WriteLine("Surname student No {0} is {1} ;", i + 1, StPrint.GetSurname());
+            }
+        }
+        //Метод сортировки по Курсу
+        public void SortByGrade(ref ArrayList pSortArr)
+        {
+            ArrayList Temp = new ArrayList();
+            for (int i = 0; i < pSortArr.Capacity - 1; i++)
+            {
+                for (int j = i + 1; j < pSortArr.Capacity; j++)
+                {
+                    Student StudentTemp = (Student)pSortArr[j];
+                    Student StudentTempL = (Student)pSortArr[j - 1];
+                    if (StudentTemp.GetGrade() < StudentTempL.GetGrade())
+                    {
+                        Temp.Add(pSortArr[j]);
+                        pSortArr[j] = pSortArr[j - 1];
+                        pSortArr[j - 1] = Temp[0];
+                    }
+                }
+            }
+        }
+        //Метод сортировки по Фамилии
+        public void SortBySurName(ref ArrayList pSortArr)
+        {
+            for (int i = 0; i < pSortArr.Capacity; i++)
+            {
+                for (int j = 0; j < pSortArr.Capacity; j++)
+                {
+                    Student StudentTemp = (Student)pSortArr[i];
+                    Student StudentTempL = (Student)pSortArr[j];
+                    if ((string.Compare(StudentTemp.GetSurname(), StudentTempL.GetSurname())) < 0)
+                    {
+                        Student Temp = (Student)pSortArr[j];
+                        pSortArr[j] = pSortArr[i];
+                        pSortArr[i] = Temp;
+                        j = pSortArr.Capacity;
+                    }
+                }
+            }
+        }
+        //Метод определения полей класса Student
+        public void SetStudent(int NumberOfStudents, ref ArrayList ListStudent)
+        {
+
+            for (int i = 0; i < NumberOfStudents; i++)
+            {
+                Student Gruppa = new Student();
+                Console.Write("Input Grade {0} student -> ", i);
+                Gruppa.SetGrade(Convert.ToDouble(Console.ReadLine()));
+                Console.Write("Input Surname {0} student -> ", i);
+                Gruppa.SetSurname(Console.ReadLine());
+                ListStudent.Add(Gruppa);
+            }
+
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Инициализация обьекта Gruppa класса Student
+            Student Gruppa = new Student();
+            Console.Write("Input Number of Student -> ");
+            int NumberOfStudents = Convert.ToInt16(Console.ReadLine());
+            ArrayList ListStudent = new ArrayList(NumberOfStudents);
+            //Инициализация коллекции, размером NumberOfStudents
+            Gruppa.SetStudent(ListStudent.Capacity, ref ListStudent);
+            //Вызов метода SetStudent обьекта Gruppa класса Student
+            Console.WriteLine("\n+++++Not sorted++++++++++\n");
+            //Вызов метода PrintStudents обьекта Gruppa класса Student
+            Gruppa.PrintStudents(ListStudent.Capacity, ref ListStudent);
+            Console.WriteLine("\n++++++SortBySurname+++++++++\n");
+            //Вызов метода SortBySurname обьекта Gruppa класса Student
+            Gruppa.SortBySurName(ref ListStudent);
+            //Вызов метода PrintStudents обьекта Gruppa класса Student
+            Gruppa.PrintStudents(ListStudent.Capacity, ref ListStudent);
+        }
+    }
+}

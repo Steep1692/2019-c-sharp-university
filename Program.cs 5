@@ -1,0 +1,61 @@
+﻿using System;
+
+namespace LWork_7
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            int use_1,use_2;
+            int[] Array = new int[10];
+            Console.WriteLine("Заполните массив:");
+            for(int i = 0; i < Array.Length; i++)
+            {
+                Console.Write("Введите {0} элемент: ", i);
+                Array[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.WriteLine('\n');
+            use_1 = Array[0];
+            use_2 = 0;
+            for (int i = 1; i < Array.Length; i++)
+            {
+                if (Array[i] % 2 == 0)
+                {
+                    if (Array[i] < use_1 && Array[i] > 0)
+                    {
+                        use_1 = Array[i];
+                        use_2 = i;
+                    }
+                }
+            }
+            Console.WriteLine("Минимальный позитивный элемент под номером {0}, равен: {1}\n", use_2, use_1);
+            Console.Write("Введите элемент для поиска: ");
+            use_1 = Convert.ToInt32(Console.ReadLine());
+            use_2 = -1;
+            for (int i = 0; i < Array.Length; i++)
+            {
+                if (Array[i] == use_1)
+                {
+                    use_2 = i;
+                    i = Array.Length;
+                }
+            }
+            if (use_2 == -1)
+            {
+                Console.WriteLine("Поискомый элемент отсутствует в массиве.\n");
+            }
+            else
+            {
+                Console.WriteLine("Поискомый элемент находиться под номером {0}, равен: {1}\n", use_2, use_1);
+            }
+            Console.WriteLine("Не нулевые элементы массива:");
+            for(int i = 0; i < Array.Length; i++)
+            {
+                if (Array[i] != 0)
+                {
+                    Console.WriteLine("элемент {0}, равен: {1} ", i, Array[i]);
+                }
+            }
+        }
+    }
+}

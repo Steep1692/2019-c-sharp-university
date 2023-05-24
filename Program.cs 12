@@ -1,0 +1,36 @@
+﻿using System;
+
+namespace LWork_5
+{
+    class MainClass
+    {
+        static void fA(int X, ref Double A)
+        {
+            A = Math.Tan(X) - Math.Pow(2, X);
+        }
+        static void fB(int X, out Double B)
+        {
+            B = Math.Sqrt(X) - Math.Sin(X);
+        }
+        static void fC(int X, out Double C)
+        {
+            C = Math.Pow(X, 3) / 7;
+        }
+        static double fH(double B, double C)
+        {
+            double H;
+            H = 5 * Math.Pow(B, 3) - 2 * C + C;
+            return H;
+        }
+        public static void Main(string[] args)
+        {
+            int X;
+            double B,C,A;
+            Console.WriteLine("Введите значение X: ");
+            X = Convert.ToInt32(Console.ReadLine());
+            fB(X, out B);
+            fC(X, out C);
+            Console.WriteLine("H равно: {0:0.00}", fH(B, C));
+        }
+    }
+}

@@ -1,0 +1,22 @@
+﻿using System;
+namespace ЫЫЫ
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            double y, x=0;
+            try
+            {
+                Console.Write("Введите число: ");
+                x = Convert.ToDouble(Console.ReadLine());
+            }
+            catch(Exception mytry)
+            {
+                Console.WriteLine(mytry.Message + "Вы ввели не число!");
+            }
+            y = (Math.Sin(Math.Pow(x, 4)) - 4) * (Math.Sqrt(Math.Abs(x) + Math.Pow(2, x)));
+            Console.Write("Функция числа {0} равна {1:0.00}", x , y);
+        }
+    }
+}

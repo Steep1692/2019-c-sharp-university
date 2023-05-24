@@ -1,0 +1,26 @@
+﻿using System;
+
+namespace LWork_1
+{
+    class MainClass
+    {
+        public static void Main(string[] args)
+        {
+            int x;
+            Console.WriteLine("Введите число: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            //Общее кол-во символов
+            Console.WriteLine("{0:d4}", x);
+            //16-ричная в верхнем регистре
+            Console.WriteLine("{0:X}", x);
+            //16-ричная в нижнем регистре
+            Console.WriteLine("{0:x}", x);
+            //Валюта
+            Console.WriteLine("{0:c}", x);
+            //Экспотенциальная форма
+            Console.WriteLine("{0:e}", x);
+            //Кол-во знаков после комы
+            Console.WriteLine("{0:f2}", Math.PI);
+        }
+    }
+}
